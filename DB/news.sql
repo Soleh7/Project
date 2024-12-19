@@ -25,15 +25,16 @@ CREATE TABLE `news` (
   `title` varchar(255) NOT NULL,
   `text` text NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `date` datetime DEFAULT CURRENT_TIMESTAMP
+  `date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `hidden` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `news`
 --
 
-INSERT INTO `news` (`id`, `title`, `text`, `image`, `date`) VALUES
-(1, 'Новая новость', 'Текст новости', '/images/news1.jpg', '2024-12-06 06:11:00');
+INSERT INTO `news` (`id`, `title`, `text`, `image`, `date`, `hidden`) VALUES
+(1, 'Новая новость', 'Текст новости', '/images/news1.jpg', '2024-12-06 06:11:00', 0);
 
 --
 -- Индексы сохранённых таблиц

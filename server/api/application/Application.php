@@ -108,4 +108,11 @@ class Application {
         }
         return ['error' => 242];
     }
+
+    public function updateNews($params) {
+        if ($params['id'] && isset($params['hidden'])) {
+            return $this->news->updateNews($params['id'], $params['hidden']);
+        }
+        return ['error' => 242];
+    }
 }

@@ -86,5 +86,9 @@ class DB {
     public function addNews($title, $text, $image) {
         return $this->execute("INSERT INTO news (title, text, image) VALUES (?, ?, ?)", [$title, $text, $image]);
     }
+
+    public function updateNews($id, $hidden) {
+        return $this->execute("UPDATE news SET hidden=? WHERE id=?", [$hidden, $id]);
+    }
     
 }

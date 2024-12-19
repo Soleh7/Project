@@ -15,6 +15,7 @@ const Menu: React.FC<IBasePage> = (props: IBasePage) => {
             <Button text='Новости' onClick={() => setPage(PAGES.NEWS)} />
             <Button text='Обращения' onClick={() => setPage(PAGES.CHAT)} />
             <Button text='Авторизация' onClick={() => setPage(PAGES.LOGIN)} />
+            <Button text='Админ панель' onClick={() => setPage(PAGES.ADMIN_PANEL)} />
             {user && user.role === 'admin' && (
                 <>
                     <Button text='Карты' onClick={() => setPage(PAGES.MAPS)} />

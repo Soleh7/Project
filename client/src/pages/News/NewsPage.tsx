@@ -4,7 +4,7 @@ import { TNews } from '../../services/server/types';
 import { IBasePage } from '../PageManager';
 import CONFIG from '../../config';
 
-import './NewsPage.scss';
+//import './NewsPage.scss';
 
 const { STATIC } = CONFIG;
 

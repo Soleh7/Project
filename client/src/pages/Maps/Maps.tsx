@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Polyline, Popup } from 'react-leaflet';
+/*import React, { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Polyline, Popup, LeafletMouseEvent } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const getStreetColor = (houses) => {
+// Define the type for houses
+type House = 0 | 1;
+
+const getStreetColor = (houses: House[]): string => {
     const activeCount = houses.filter(house => house === 1).length;
     if (activeCount === 3) {
         return 'green';
@@ -13,8 +16,8 @@ const getStreetColor = (houses) => {
     }
 };
 
-const Maps = () => {
-    const [streets, setStreets] = useState([]);
+const Maps: React.FC = () => {
+    const [streets, setStreets] = useState<any[]>([]);
 
     useEffect(() => {
         fetch('http://your-api-endpoint/getMaps')
@@ -34,7 +37,7 @@ const Maps = () => {
                 {streets.map((street) => {
                     const { street_name, coordinates, houses } = street;
                     const streetColor = getStreetColor(JSON.parse(houses));
-                    const inactiveCount = JSON.parse(houses).filter(house => house === 0).length;
+                    const inactiveCount = JSON.parse(houses).filter((house: House) => house === 0).length;
 
                     return (
                         <Polyline
@@ -43,11 +46,11 @@ const Maps = () => {
                             color={streetColor}
                             weight={5}
                             eventHandlers={{
-                                mouseover: (e) => {
+                                mouseover: (e: LeafletMouseEvent) => {
                                     const target = e.target;
                                     target.setStyle({ weight: 7 });
                                 },
-                                mouseout: (e) => {
+                                mouseout: (e: LeafletMouseEvent) => {
                                     const target = e.target;
                                     target.setStyle({ weight: 5 });
                                 }
@@ -64,4 +67,4 @@ const Maps = () => {
     );
 };
 
-export default Maps;
+export default Maps;*/

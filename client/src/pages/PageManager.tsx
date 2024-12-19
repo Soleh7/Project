@@ -4,9 +4,9 @@ import Preloader from './Preloader/Preloader';
 import Main from './Main/Main';
 import Login from './Login/Login';
 import Chat from './Chat/Chat';
-import GamePage from './Game/Game';
+//import GamePage from './Game/Game';
 import NotFound from './NotFound/NotFound';
-import Maps from './Maps/Maps';
+//import Maps from './Maps/Maps';
 import NewsPage from './News/NewsPage';
 import AdminPanel from './AdminPanel/AdminPanel';
 
@@ -35,7 +35,7 @@ const PageManager: React.FC = () => {
             {page === PAGES.MAIN && <Main setPage={setPage} />}
             {page === PAGES.LOGIN && <Login setPage={setPage} />}
             {page === PAGES.CHAT && <Chat setPage={setPage} />}
-            {page === PAGES.GAME && <GamePage setPage={setPage} />}
+            
             {page === PAGES.NOT_FOUND && <NotFound setPage={setPage} />}
             {page === PAGES.MAPS && <NotFound setPage={setPage} />}
             {page === PAGES.ADMIN_PANEL && <AdminPanel setPage={setPage} />}

@@ -17,7 +17,7 @@ const App: React.FC = () => {
     return (
         <StoreContext.Provider value={store}>
             <ServerContext.Provider value={server}>
-                <BannerProvider> {/* Оборачиваем приложение новым провайдером контекста */}
+                <BannerProvider> {}
                     <div className='app'>
                         <Popup />
                         <PageManager />

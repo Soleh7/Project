@@ -4,6 +4,17 @@ import { useBannerContext } from '../../components/BannerContext/BannerContext';
 import Button from '../../components/Button/Button';
 import { IBasePage, PAGES } from '../../pages/PageManager';
 import { TBanner } from '../../services/server/types';
+import {
+    Container,
+    TextField,
+    Select,
+    MenuItem,
+    FormControl,
+    InputLabel,
+    Typography,
+    Box,
+    Button as MuiButton
+} from '@mui/material';
 
 const AdminPanel: React.FC<IBasePage> = (props: IBasePage) => {
     const { setPage } = props;
@@ -106,50 +117,146 @@ const AdminPanel: React.FC<IBasePage> = (props: IBasePage) => {
     }
 
     return (
-        <div className='admin-panel'>
-            <h1>Админ панель</h1>
-            <div>
-                <input type="text" placeholder="Логин" value={login} onChange={(e) => setLogin(e.target.value)} />
-                <input type="password" placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <input type="text" placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} />
-                <select value={role} onChange={(e) => setRole(e.target.value)}>
-                    <option value="user">Пользователь</option>
-                    <option value="admin">Администратор</option>
-                    <option value="executor">Исполнитель</option>
-                </select>
-                <Button text="Добавить пользователя" onClick={addUser} />
-            </div>
-            <div>
-                <input type="text" placeholder="Заголовок баннера" value={title} onChange={(e) => setTitle(e.target.value)} />
-                <input type="text" placeholder="Текст баннера" value={text} onChange={(e) => setText(e.target.value)} />
-                <input type="text" placeholder="Изображение баннера" value={image} onChange={(e) => setImage(e.target.value)} />
-                <input type="text" placeholder="URL баннера" value={url} onChange={(e) => setUrl(e.target.value)} />
-                <Button text="Добавить баннер" onClick={addBanner} />
-            </div>
-            <div>
-                <h2>Список баннеров</h2>
-                {banners && banners.map((banner: TBanner) => (
-                    <div key={banner.id}>
-                        <p>{banner.title}</p>
-                        <Button text="Удалить" onClick={() => deleteBanner(banner.id)} />
-                        <Button text={banner.hidden ? "Показать" : "Скрыть"} onClick={() => hideBanner(banner.id, !banner.hidden)} />
-                        <input
-                            type="number"
-                            placeholder="Приоритет"
-                            value={banner.priority}
-                            onChange={(e) => setBannerOrder(banner.id, parseInt(e.target.value))}
-                        />
-                    </div>
-                ))}
-            </div>
-            <div>
-                <input type="text" placeholder="Заголовок новости" value={newsTitle} onChange={(e) => setNewsTitle(e.target.value)} />
-                <input type="text" placeholder="Текст новости" value={newsText} onChange={(e) => setNewsText(e.target.value)} />
-                <input type="text" placeholder="Изображение новости" value={newsImage} onChange={(e) => setNewsImage(e.target.value)} />
-                <Button text="Добавить новость" onClick={addNews} />
-            </div>
-            <Button text="Назад" onClick={() => setPage(PAGES.MAIN)} />
-        </div>
+        <Container>
+            <Typography variant="h4" gutterBottom>
+                Админ панель
+            </Typography>
+            <Box
+                sx={{
+                    maxHeight: '80vh',
+                    overflowY: 'auto',
+                    padding: '16px',
+                    border: '1px solid #ccc',
+                    borderRadius: '8px',
+                    backgroundColor: '#f9f9f9',
+                }}
+            >
+                <Box mb={4}>
+                    <TextField
+                        label="Логин"
+                        value={login}
+                        onChange={(e) => setLogin(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Пароль"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Имя"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <FormControl fullWidth margin="normal">
+                        <InputLabel>Роль</InputLabel>
+                        <Select
+                            value={role}
+                            onChange={(e) => setRole(e.target.value)}
+                        >
+                            <MenuItem value="user">Пользователь</MenuItem>
+                            <MenuItem value="admin">Администратор</MenuItem>
+                            <MenuItem value="executor">Исполнитель</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <MuiButton variant="contained" color="primary" onClick={addUser}>
+                        Добавить пользователя
+                    </MuiButton>
+                </Box>
+                <Box mb={4}>
+                    <TextField
+                        label="Заголовок баннера"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Текст баннера"
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Изображение баннера"
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="URL баннера"
+                        value={url}
+                        onChange={(e) => setUrl(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <MuiButton variant="contained" color="primary" onClick={addBanner}>
+                        Добавить баннер
+                    </MuiButton>
+                </Box>
+                <Box mb={4}>
+                    <Typography variant="h5" gutterBottom>
+                        Список баннеров
+                    </Typography>
+                    {banners && banners.map((banner: TBanner) => (
+                        <Box key={banner.id} mb={2}>
+                            <Typography>{banner.title}</Typography>
+                            <MuiButton variant="contained" color="secondary" onClick={() => deleteBanner(banner.id)}>
+                                Удалить
+                            </MuiButton>
+                            <MuiButton variant="contained" color="primary" onClick={() => hideBanner(banner.id, !banner.hidden)}>
+                                {banner.hidden ? "Показать" : "Скрыть"}
+                            </MuiButton>
+                            <TextField
+                                label="Приоритет"
+                                type="number"
+                                value={banner.priority}
+                                onChange={(e) => setBannerOrder(banner.id, parseInt(e.target.value))}
+                                fullWidth
+                                margin="normal"
+                            />
+                        </Box>
+                    ))}
+                </Box>
+                <Box mb={4}>
+                    <TextField
+                        label="Заголовок новости"
+                        value={newsTitle}
+                        onChange={(e) => setNewsTitle(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Текст новости"
+                        value={newsText}
+                        onChange={(e) => setNewsText(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Изображение новости"
+                        value={newsImage}
+                        onChange={(e) => setNewsImage(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <MuiButton variant="contained" color="primary" onClick={addNews}>
+                        Добавить новость
+                    </MuiButton>
+                </Box>
+                <MuiButton variant="contained" color="inherit" onClick={() => setPage(PAGES.MAIN)}>
+                    Назад
+                </MuiButton>
+            </Box>
+        </Container>
     );
 };
 
